@@ -1,5 +1,5 @@
 #!/bin/bash
 ufw disable
-filebeat modules enable system
-filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
-
+-f /etc/logstash/conf.d/logstash.conf
+#/usr/share/logstash/bin/logstash --path.settings /etc/logstash/ -f /etc/logstash/conf.d/logstash.conf
+#/usr/share/filebeat/bin/filebeat -e -c /etc/filebeat/filebeat.yml

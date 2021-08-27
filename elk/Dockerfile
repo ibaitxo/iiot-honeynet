@@ -9,7 +9,7 @@ FROM ubuntu:18.04
 
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
-EXPOSE 5601 9200
+EXPOSE 5601 9200 9300 9600 5044
 
 # Instalacion paquetes base
 RUN apt-get update && apt-get install -y \
