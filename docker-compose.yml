@@ -20,10 +20,9 @@ services:
     privileged: true
     tty: true
     ports: 
-      - "80:80"
       - "22:22"
-      - "23:23"
-
+      - "80:80"
+      - "1883:1883"
   iot:
     image: bin/iot-device
     build: ./iot-device
@@ -62,9 +61,9 @@ services:
       - NET_ADMIN
     privileged: true
     ports:
-      - "5601:5601"
-      - "9200:9200"
-      - "5044:5044"
+      - "55601:5601"
+      - "59200:9200"
+      - "55044:5044"
     volumes:
       - ~/Documentos/volumes/:/var/log/honeypot/
 

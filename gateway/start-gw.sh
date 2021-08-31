@@ -6,5 +6,5 @@
 #=========================================================================================
 #!/bin/bash
 
+# Arranque de SSH
 sudo service ssh start
-sudo /etc/init.d/xinetd restart

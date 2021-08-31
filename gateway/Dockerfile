@@ -7,7 +7,7 @@
 #=========================================================================================
 FROM ubuntu:18.04
 
-EXPOSE 22 23 80 
+EXPOSE 22 80 1883
 
 RUN apt-get update
 
@@ -25,14 +25,22 @@ RUN apt-get install -y \
     openssh-client \
     apache2 \
     xinetd \
-    telnetd \
-    nmap
+    nmap \
+    syslog-ng \
+    ufw \
+    mosquitto \
+    mosquitto-clients 
 
 RUN mkdir /var/run/sshd
+RUN mkdir /var/log/sshd
+RUN touch /var/log/sshd/sshderr.log 
+RUN touch /var/log/sshd/sshd.log 
+COPY ./config/syslog-ng.conf /etc/syslog-ng/
 
 RUN echo "root:root" | chpasswd
 RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+
 RUN mkdir /root/.ssh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

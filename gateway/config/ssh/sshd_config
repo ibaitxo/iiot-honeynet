@@ -14,7 +14,7 @@
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
-Port 62222
+Port 22
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
@@ -27,8 +27,8 @@ Port 62222
 #RekeyLimit default none
 
 # Logging
-#SyslogFacility AUTH
-#LogLevel INFO
+SyslogFacility AUTH
+LogLevel INFO
 
 # Authentication:
 
