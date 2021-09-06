@@ -12,10 +12,7 @@ EXPOSE 22 80 1883
 RUN apt-get update
 
 RUN apt-get install -y \
-    iproute2 \
     net-tools \
-    iputils-ping\
-    traceroute \
     nano \
     iptables \ 
     iptables-dev \
@@ -24,12 +21,17 @@ RUN apt-get install -y \
     openssh-server \
     openssh-client \
     apache2 \
-    xinetd \
     nmap \
-    syslog-ng \
     ufw \
     mosquitto \
-    mosquitto-clients 
+    mosquitto-clients \
+    python3-dev \
+    python3-pip \
+    libglib2.0-dev \
+    git \
+    telnet \
+    wget \
+    rsyslog
 
 RUN mkdir /var/run/sshd
 RUN mkdir /var/log/sshd
@@ -40,12 +42,15 @@ COPY ./config/syslog-ng.conf /etc/syslog-ng/
 RUN echo "root:root" | chpasswd
 RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/#SyslogFacility AUTH/SyslogFacility AUTH/g' /etc/ssh/sshd_config
+RUN sed -ri 's/#LogLevel INFO/LogLevel VERBOSE/g' /etc/ssh/sshd_config
 
 RUN mkdir /root/.ssh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY ./start-gw.sh .
-RUN chmod +x start-gw.sh
+
+COPY ./start-gw.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/start-gw.sh
 
 # Configuracion de supervisor
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf

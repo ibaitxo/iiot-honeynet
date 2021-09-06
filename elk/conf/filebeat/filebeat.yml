@@ -3,13 +3,19 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /var/log/honeypot/honeyd/honeyd.log
+    - /var/log/honeynet/gw_logs/auth.log
+  tags: ["auth"]
+  
+- type: log
+  enabled: true
+  paths:
+    - /var/log/honeynet/ics_logs/honeyd.log
   tags: ["honeyd"]
 
 - type: log
   enabled: true
   paths:
-    - /var/log/honeypot/iot-device/var/log/cowrie/cowrie.json
+    - /var/log/honeynet/iot_logs/cowrie.json
   tags: ["cowrie"]
 
   

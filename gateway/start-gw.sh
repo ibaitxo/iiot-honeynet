@@ -7,4 +7,4 @@
 #!/bin/bash
 
 # Arranque de SSH
-sudo service ssh start
+service ssh start
