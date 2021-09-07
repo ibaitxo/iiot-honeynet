@@ -1,3 +1,9 @@
+#=========================================================================================
+# Alumno: Ibai Castañon Osorio
+# Email: icasto01@estudiantes.unileon.es
+#
+# ICS-Honeyd startup script
+#=========================================================================================
 #!/bin/bash
 
 cd /home/admin/Honeyd/

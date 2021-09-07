@@ -2,7 +2,7 @@
 # Alumno: Ibai Castañon Osorio
 # Email: icasto01@estudiantes.unileon.es
 #
-# Descripcion: Fichero de configuracion de Dockerfile para firewall
+# File config for gateway emulated device
 #
 #=========================================================================================
 FROM ubuntu:18.04
