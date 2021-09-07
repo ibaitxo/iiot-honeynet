@@ -1,17 +1,30 @@
+# ======================== Filebeat Configuration =========================
+# Ibai Castañón Osorio
+# icasto01@estudiantes.unileon.es
+#
+# File config for filebeat
+#==========================================================================
+
+#---------------- Filebeat inputs config ------------------
 filebeat.inputs:
 
-#- type: log
-#  enabled: true
-#  paths:
-#    - /var/log/honeynet/gw_logs/auth.log
-#  tags: ["auth"]
-  
-#- type: log
-#  enabled: true
-#  paths:
-#    - /var/log/honeynet/ics_logs/honeyd.log
-#  tags: ["honeyd"]
+# Config for sshd logs in gateway space
+- type: log
+  enabled: true
+  paths:
+    - /var/log/honeynet/gw_logs/auth.log
+  fields:
+    document_type: gateway
 
+# Config for honeyd logs
+- type: log
+  enabled: true
+  paths:
+    - /var/log/honeynet/ics_logs/honeyd.log
+  fields:
+    document_type: honeyd
+
+# Config for cowrie json logs
 - input_type: log
   type: log
   enabled: true
@@ -21,8 +34,7 @@ filebeat.inputs:
   fields:
     document_type: cowrie
 
-  
-
+#---------------- Filebeat modules config ------------------
 filebeat.config.modules:
   # Glob pattern for configuration loading
   path: ${path.config}/modules.d/*.yml
@@ -33,19 +45,21 @@ filebeat.config.modules:
   # Period on which files under path should be checked for changes
   #reload.period: 10s
 
-
+#---------------- Filebeat shards config ------------------
 setup.template.settings:
   index.number_of_shards: 1
 
-
+#---------------- Filebeat kibana config ------------------
 setup.kibana:
   host: "localhost:5601"
 
+#---------------- Filebeat logstash config ------------------
 output.logstash:
   
   hosts: ["localhost:5044"]
 
 
+#---------------- Filebeat processors config ------------------
 processors:
   - add_host_metadata:
       when.not.contains.tags: forwarded
