@@ -1,22 +1,25 @@
 filebeat.inputs:
 
-- type: log
-  enabled: true
-  paths:
-    - /var/log/honeynet/gw_logs/auth.log
-  tags: ["auth"]
+#- type: log
+#  enabled: true
+#  paths:
+#    - /var/log/honeynet/gw_logs/auth.log
+#  tags: ["auth"]
   
-- type: log
-  enabled: true
-  paths:
-    - /var/log/honeynet/ics_logs/honeyd.log
-  tags: ["honeyd"]
+#- type: log
+#  enabled: true
+#  paths:
+#    - /var/log/honeynet/ics_logs/honeyd.log
+#  tags: ["honeyd"]
 
-- type: log
+- input_type: log
+  type: log
   enabled: true
   paths:
     - /var/log/honeynet/iot_logs/cowrie.json
-  tags: ["cowrie"]
+  encoding: plain
+  fields:
+    document_type: cowrie
 
   
 

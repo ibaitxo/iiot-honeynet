@@ -57,7 +57,7 @@ RUN apt-get install -y ruby-dev logstash
 RUN gem update --system
 COPY ./conf/logstash/logstash /etc/init.d/
 COPY ./conf/logstash/logstash.yml /etc/logstash/
-COPY ./conf/logstash/logstash.conf /etc/logstash/conf.d/logstash.conf
+COPY ./conf/logstash/logstash-cowrie.conf /etc/logstash/conf.d
 RUN chmod +x /etc/init.d/logstash
 
 # Instalacion de Filebeat
