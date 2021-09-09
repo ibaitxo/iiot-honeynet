@@ -41,6 +41,7 @@ echo '[-] Configuring crontab jobs for user'
 sleep 2
 # Configure crontab
 echo '@reboot /usr/bin/python3 ~/CAPEv2/cuckoo.py'  >> user_cron
+echo '@reboot /usr/bin/python3 ~/CAPEv2/utils/process.py -p4 auto'  >> user_cron
 # Configure crontab for sending malware to CAPEv2 every 5 minutes
 echo '*/5 * * * * /bin/bash ~/honeynet/submit_sample.sh'  >> user_cron
 crontab -u $USER user_cron
