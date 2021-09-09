@@ -3,7 +3,6 @@
 # Email: icasto01@estudiantes.unileon.es
 #
 # File config for gateway emulated device
-#
 #=========================================================================================
 FROM ubuntu:18.04
 
@@ -47,6 +46,18 @@ RUN sed -ri 's/#LogLevel INFO/LogLevel VERBOSE/g' /etc/ssh/sshd_config
 
 RUN mkdir /root/.ssh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Instalacion de mailcatcher
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libsqlite3-dev \
+    ruby-dev
+
+# Instalacion
+RUN gem install mailcatcher --no-ri --no-rdoc
+
+# expose ports
+EXPOSE 1025 1080
 
 
 COPY ./start-gw.sh /usr/local/bin/

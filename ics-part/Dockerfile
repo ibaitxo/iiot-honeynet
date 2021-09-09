@@ -2,8 +2,7 @@
 # Alumno: Ibai Castañon Osorio
 # Email: icasto01@estudiantes.unileon.es
 #
-# Descripcion: Fichero de configuracion de Dockerfile para la parte de Honeyd
-#
+# Dockerfile configuration file for the Honeyd part of Honeyd
 #=========================================================================================
 FROM ubuntu:18.04
 

@@ -2,10 +2,8 @@
 # Alumno: Ibai Castañon Osorio
 # Email: icasto01@estudiantes.unileon.es
 #
-# Gateway startup script
+# Script to make permanent network interface for virtualbox
 #=========================================================================================
 #!/bin/bash
-
-# Arranque de SSH
-service ssh start
-mailcatcher -f --ip=0.0.0.0
+vboxmanage hostonlyif create
+vboxmanage hostonlyif ipconfig vboxnet0 --ip 192.168.56.1 --netmask 255.255.255.0

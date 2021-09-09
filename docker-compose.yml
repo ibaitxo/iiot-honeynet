@@ -2,8 +2,7 @@
 # Alumno: Ibai Castañon Osorio
 # Email: icasto01@estudiantes.unileon.es
 #
-# Descripcion: Fichero de configuracion de docker-compose para organizar la infraestructura
-# de contenedores
+# docker-compose configuration file to organize the infrastructure container infrastructure
 #===========================================================================================
 version: "2.2"
 
@@ -26,6 +25,8 @@ services:
       - "22:22"
       - "80:80"
       - "1883:1883"
+      - "25:1025"
+      - "1080:1080"
 
   iot:
     image: bin/iot-device
